@@ -8,7 +8,9 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "reveal.js": "3.9.2",
+    "source-map": "^0.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
