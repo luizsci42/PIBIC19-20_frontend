@@ -67,7 +67,7 @@ class TituloForm extends Component {
     )
     return (
       // Se this.state.data tiver dados, os passe para o componente App. Caso contrário, retorne formulario
-      this.state.data ? <App dados={this.state.data.texto} /> : formulario
+      this.state.data ? <App dados={this.state.data} /> : formulario
     );
   }
 }
