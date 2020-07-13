@@ -2,13 +2,28 @@ import React, { Component } from 'react';
 import Reveal from 'reveal.js';
 import './reveal.css';
 import './black.css';
+import './apresentacao.css';
 
 function Slides(props) {
-    return (
-      <section>{props.conteudo}</section>
-    );
-  }
-  
+  const topico = <section className="topico">{props.conteudo}</section>
+  var sentencas = props.conteudo.split('.');
+  // TODO: Quero definir um limite de caracteres por slide, sem cortar uma sentença no meio
+  // Para isso, acho que posso fazer uma cahamda recursiva à função Slides()
+
+  const texto = 
+  <section className="texto">
+    <ul>
+      {sentencas.map(sentenca => {
+        if(sentenca !== "") {
+          return <li key={sentenca.toString()}>{sentenca}</li>
+        }
+      })}
+    </ul>
+  </section>
+
+  return props.topico ? topico : texto;
+}
+
   class Apresentacao extends Component {
     // Outro método do ciclo de vida, executado após o componentWillMount()
     componentDidMount() {
