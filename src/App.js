@@ -22,7 +22,16 @@ class TituloForm extends Component {
   }
 
   direcionar(titulo) {
-    fetch('/' + titulo)
+    var cabecalho = new Headers();
+    const inicializador = {
+      method: 'GET',
+      Headers: cabecalho,
+      mode: 'cors',
+      cache: 'default'
+    }
+    const url = "https://backendnevicelabs.herokuapp.com/";
+
+    fetch(url + titulo, inicializador)
     .then(res => {
       if(res.ok) {
         return res.json();
