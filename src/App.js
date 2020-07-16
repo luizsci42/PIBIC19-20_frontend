@@ -48,23 +48,15 @@ class TituloForm extends Component {
     event.preventDefault();
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    this.direcionar(this.state.value);
-    event.preventDefault();
-  }
-
   render() {
     const formulario = (
       <div className="form">
         <form onSubmit={this.handleSubmit}>
-          <img src="" alt="Gerador de slides" />
+          <label>Gerador de slides</label>
           <input 
             type="text" 
-            placeholder="Título do artigo da Wikipédia" 
+            placeholder="Título do artigo da Wikipédia"
+            id="caixaBusca"
             value={this.state.value} onChange={this.handleChange} 
           />
           <label id="mensagem"></label>

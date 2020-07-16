@@ -7,12 +7,12 @@ import './Apresentacao.css';
 function Slides(props) {
   if(props.imagem) {
     return (
-      <section className='imagem'>
-        <img src={props.url} />
+      <section className="imagem">
+        <img src={props.url} alt="" />
       </section>
-    );
+    )
   }
-
+  
   if(props.final) {
     return (
       <section>
@@ -25,7 +25,7 @@ function Slides(props) {
     )
   }
 
-  const topico = <section className="topico">{props.conteudo}</section>
+  const topico = <section  className="topico">{props.conteudo}</section>
   var sentencas = props.conteudo.split('.');
 
  const texto = 
@@ -68,36 +68,36 @@ function Slides(props) {
         const slideTopico = <Slides texto={true} topico={true} conteudo={topico} />
 
         const unicoSlide = 
-        <section key={topico}>
+        <section className="quadro" key={topico}>
             {slideTopico}
             {<Slides texto={true} conteudo={texto} />}
         </section>
 
         const doisSlides = 
-        <section key={topico}>
+        <section className="quadro" key={topico}>
           {slideTopico}
           {<Slides conteudo={texto.slice(0, 453)} />}
-          {<Slides conteudo={texto.slice(453, -1)} />}
+          {<Slides conteudo={texto.slice(453, -1)} />}          
         </section>
         
         return texto.length > 452 ? doisSlides : unicoSlide;
       })
     }
 
-    slideImagem(content) {
-      return content.imagens.map(url => {
-        return <Slides key={url} url={url} imagem={true} />
-      })
+    slideImagem(dados) {
+     return dados.imagens.map(imagem => {
+       return <Slides key={imagem} url={imagem} imagem={true} />
+     })
     }
 
     // Dentro da div slides, podemos colocar um for para criar cada tag section
     // utilizando a função renderizarSlide
     render() {
       return (
-        <div className="slides">
+        <section className="slides">
           {this.renderizarSlide(this.props.value)}
           {this.slideImagem(this.props.value)}
-        </div>
+        </section>
       )
     }
   }
