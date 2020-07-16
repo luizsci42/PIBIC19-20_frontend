@@ -13,30 +13,20 @@ function Slides(props) {
     );
   }
 
+  if(props.final) {
+    return (
+      <section>
+        <section>
+          <label>Fim</label>
+          <br />
+          <button type="button"><a href="?print-pdf">Download</a></button>
+        </section>
+      </section>
+    )
+  }
+
   const topico = <section className="topico">{props.conteudo}</section>
   var sentencas = props.conteudo.split('.');
-  // TODO: Quero definir um limite de caracteres por slide, sem cortar uma sentença no meio
-  // Para isso, acho que posso fazer uma cahamda recursiva à função Slides()
-  /*
-  const limite = 452;
-  var tamanhoTexto = 0;
-  var saida;
-
-  sentencas.forEach(sentenca => {
-    tamanhoTexto += sentenca.length;
-
-    if(sentenca !== "") {
-      if(tamanhoTexto <= limite) {
-        saida = <li key={sentenca.toString()}>{sentenca}</li>
-
-        return saida
-      }
-      else {
-        return <Slides conteudo={sentencas} />
-      }
-    }
-  });
-  */
 
  const texto = 
  <section className="texto">
@@ -96,7 +86,7 @@ function Slides(props) {
 
     slideImagem(content) {
       return content.imagens.map(url => {
-        return <Slides url={url} imagem={true} />
+        return <Slides key={url} url={url} imagem={true} />
       })
     }
 
@@ -106,6 +96,7 @@ function Slides(props) {
       return (
         <div className="slides">
           {this.renderizarSlide(this.props.value)}
+          {this.slideImagem(this.props.value)}
         </div>
       )
     }

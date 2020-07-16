@@ -12,24 +12,23 @@ class TituloForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  direcionar(titulo) {
-    var cabecalho = new Headers();
-    const inicializador = {
-      method: 'GET',
-      Headers: cabecalho,
-      mode: 'cors',
-      cache: 'default'
-    }
-    const url = "https://backendnevicelabs.herokuapp.com/";
+  tratarErros(response) {
+    if(response.status === 500) {
+      document.getElementById('caixaBusca').style.backgroundColor = 'red';
+      const mensagem = document.getElementById('mensagem');
 
-    fetch(url + titulo, inicializador)
+      mensagem.textContent = 'Tópico não encontrado. A página deve existir na Wikipédia!';
+    }
+  }
+
+  direcionar(titulo) {
+    fetch('/' + titulo)
     .then(res => {
       if(res.ok) {
         return res.json();
       }
       else {
-        console.log(res)
-        throw new Error(res.statusText);
+        this.tratarErros(res);
       }
     })
     .then(conteudo => {
@@ -49,18 +48,26 @@ class TituloForm extends Component {
     event.preventDefault();
   }
 
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    this.direcionar(this.state.value);
+    event.preventDefault();
+  }
+
   render() {
     const formulario = (
       <div className="form">
         <form onSubmit={this.handleSubmit}>
-        <label>
           <img src="" alt="Gerador de slides" />
           <input 
             type="text" 
             placeholder="Título do artigo da Wikipédia" 
             value={this.state.value} onChange={this.handleChange} 
           />
-        </label>
+          <label id="mensagem"></label>
         <input type="submit" value="Gerar Slides" />
       </form>
       </div>
