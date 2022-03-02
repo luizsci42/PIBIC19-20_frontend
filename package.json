@@ -9,7 +9,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "reveal.js": "3.9.2",
+    "reveal.js": "4.3.0",
     "source-map": "^0.7.2"
   },
   "scripts": {
