@@ -29,7 +29,8 @@ class TituloForm extends Component {
       mode: 'cors',
       cache: 'default'
     }
-    const url = "https://backendnevicelabs.herokuapp.com/";
+    // const url = "https://backendnevicelabs.herokuapp.com/";
+    const url = "https://classy-kataifi-9201bb.netlify.app/";
 
     fetch(url + titulo, inicializador)
     .then(res => {
